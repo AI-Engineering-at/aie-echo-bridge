@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aie-echo-bridge"
+version = "0.1.0"
+description = "Brain <-> echo_log bidirectional bridge (Mattermost-DM + Honcho-peer-memory)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "AGPL-3.0-or-later"
+authors = [{ name = "AI Engineering (Joe + Brain)" }]
+dependencies = [
+  "httpx>=0.28",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "respx>=0.23",
+]
+
+[project.scripts]
+aie-echo-bridge = "aie_echo_bridge.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aie_echo_bridge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
